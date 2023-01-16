@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 
 from werkzeug.utils import secure_filename
 
+from bson.json_util import dumps
+
 client = MongoClient('mongodb+srv://lee:sparta@Cluster0.nw7w0pd.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
@@ -22,7 +24,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
+    # name = list(db.gitDB.find({}, {}))
+    # print(dumps(name))
+    db.gitDB.update_one({'id':'akfangus'},{'$push':{'fav_id':'user2'}})
     return render_template('main.html')
+
+@app.route('/UserList')
+def userlist():
+    return render_template('member.html')
 
 
 @app.route('/Main', methods=['GET'])
