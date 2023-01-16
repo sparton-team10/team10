@@ -1,9 +1,13 @@
+li {
+  list-style: none;
+}
+
 .mynav {
   display: grid;
   place-items: center;
   height: 50px;
 
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 100px;
   background-color: darkgrey;
 }
 .mytitle {

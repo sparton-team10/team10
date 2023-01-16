@@ -27,9 +27,10 @@
     <!-- 네비게이션바 -->
     <nav class="mynav">
       <a href="/">Main</a>
-      <a href="/">About this</a>
-      <a href="/">UserList</a>
-      <a href="/">Mypage</a>
+      <a href="/about">About this</a>
+      <a href="/UserList">UserList</a>
+      <a href="/Mypage">Mypage</a>
+      <a href="/Login">Login</a>
     </nav>
 
     <!-- 메인 이미지 및 타이틀 -->
@@ -39,7 +40,7 @@
 
     <!-- 검색창 만들기 -->
     <div class="searchBar">
-      <button class="search-btn" onclick="">
+      <button class="search-btn" onclick="search_member()">
         <div class="search-btn-svg">
           <svg
             focusable="false"
@@ -59,7 +60,7 @@
 
     <!-- 결과창 만들기 -->
     <div class="search-result">
-      <div class="result-id">
+      <div class="result-id" id="my-info">
         <div class="card card-id" style="width: 18rem">
           <img
             src="https://avatars.githubusercontent.com/u/39788340?v=4"
@@ -77,7 +78,7 @@
 
       <div class="result-repo">
         <h1>Repo</h1>
-        <ul>
+        <ul id="repo_ul">
           <li class="result-repo-item">Repo1</li>
           <li class="result-repo-item">Repo2</li>
           <li class="result-repo-item">Repo3</li>
