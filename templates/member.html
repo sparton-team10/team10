@@ -3,55 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>member_List</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/member.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/member.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/member.js') }}"></script>
+
 </head>
+
+
 <body>
 
 <h1>Member List</h1>
 
 
-<div class="card">
-    <div>
-        <img src="https://source.unsplash.com/random/300×300" class="profile"/>
-    </div>
-    <div class="user-info">
-        <h2>User name</h2>
-        <ul>
-            <li> 10 <strong>Fallowers</strong></li>
-            <li> 10 <strong>Fallowing</strong></li>
-            <li> 10 <strong>Repos</strong></li>
-        </ul>
-        <div class="btn">
-           <button type="button" class="bookmk" style=cursor:pointer;>⭐bookmark</button>
+<div id="user-card">
 
-        </div>
-
-
-    </div>
 </div>
-<div class="card">
-    <div>
-        <img src="https://source.unsplash.com/random/300×300" class="profile"/>
-    </div>
-    <div class="user-info">
-        <h2>user name</h2>
-        <ul>
-            <li> 10 <strong>Fallowers</strong></li>
-            <li> 10 <strong>Fallowing</strong></li>
-            <li> 10 <strong>Repos</strong></li>
-        </ul>
-        <div class="btn">
-           <button type="button" class="bookmk" style=cursor:pointer;>⭐bookmark</button>
-
-        </div>
-
-
-    </div>
-</div>
-
-
-
-
 
 
 </body>

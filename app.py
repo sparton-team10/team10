@@ -39,5 +39,22 @@ def search_member():  # put application's code here
     return jsonify({'id_list': name_list, 'repo_list': repo_list})
 
 
+
+##등록인 명부##
+
+@app.route('/UserList', methods=['GET'])
+def users_list():
+
+    return render_template("member.html")
+
+@app.route('/UserList/call', methods=['GET'])
+def users_list_call():
+    user_list = list(db.gitDB.find({}, {'_id': False}))
+    return jsonify({'user_call':user_list})
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
