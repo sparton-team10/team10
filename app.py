@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, redirect
 
 from pymongo import MongoClient
 
@@ -53,7 +53,7 @@ def do_modify():
     print(secure_filename(ff.filename))
     print(f)
     ff.save('./static/image/' + secure_filename(ff.filename))
-    return jsonify({'msg': f})
+    return redirect(f'/Mypage')
 
 
 if __name__ == '__main__':
