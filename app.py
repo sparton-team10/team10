@@ -5,6 +5,8 @@ from pymongo import MongoClient
 import requests
 from bs4 import BeautifulSoup
 
+from werkzeug.utils import secure_filename
+
 client = MongoClient('mongodb+srv://lee:sparta@Cluster0.nw7w0pd.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
@@ -37,6 +39,21 @@ def search_member():  # put application's code here
     repo_list = [item.text.strip() for item in info]
     print(repo_list)
     return jsonify({'id_list': name_list, 'repo_list': repo_list})
+
+
+@app.route('/Mypage')
+def mypage():
+    return render_template('mypage.html')
+
+
+@app.route('/Mypage/modify', methods=['POST'])
+def do_modify():
+    ff = request.files['image1']
+    f = request.form
+    print(secure_filename(ff.filename))
+    print(f)
+    ff.save('./static/image/' + secure_filename(ff.filename))
+    return jsonify({'msg': f})
 
 
 if __name__ == '__main__':
