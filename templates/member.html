@@ -1,58 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>member_List</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/member.css" />
-</head>
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 
-<h1>Member List</h1>
+* {
+  box-sizing: border-box;
+}
 
 
-<div class="card">
-    <div>
-        <img src="https://source.unsplash.com/random/300×300" class="profile"/>
-    </div>
-    <div class="user-info">
-        <h2>User name</h2>
-        <ul>
-            <li> 10 <strong>Fallowers</strong></li>
-            <li> 10 <strong>Fallowing</strong></li>
-            <li> 10 <strong>Repos</strong></li>
-        </ul>
-        <div class="btn">
-           <button type="button" class="bookmk" style=cursor:pointer;>⭐bookmark</button>
-
-        </div>
+h1 {
+  color: #000000;
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
 
 
-    </div>
-</div>
-<div class="card">
-    <div>
-        <img src="https://source.unsplash.com/random/300×300" class="profile"/>
-    </div>
-    <div class="user-info">
-        <h2>user name</h2>
-        <ul>
-            <li> 10 <strong>Fallowers</strong></li>
-            <li> 10 <strong>Fallowing</strong></li>
-            <li> 10 <strong>Repos</strong></li>
-        </ul>
-        <div class="btn">
-           <button type="button" class="bookmk" style=cursor:pointer;>⭐bookmark</button>
+body{
+  /*background-color: #EAC7C7;*/
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
 
-        </div>
+}
 
 
-    </div>
-</div>
+.card {
+  max-width: 500px;
+  background-color: #3CC;
+  border-radius: 20px;
+  box-shadow: 5px 10px rgba(154, 160, 185, 0.05), 20px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+/*프로필 사진 부분*/
+.profile {
+  border-radius: 50%;
+  border: 5px solid #000000;
+  height: 180px;
+  width: 180px;
+
+}
+
+/*유저 정보*/
+.user-info {
+  color: #000000;
+  margin-top: 30px;
+  margin-left: 4rem;
+  margin-right: 2rem;
+}
 
 
+.user-info h2 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+
+}
+
+.user-info ul {
+  list-style-type: none;
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+  padding: 0;
+  max-width: 400px;
+  color: #000000;
+}
+
+/*.user-info ul li {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*}*/
+
+.user-info ul li strong {
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+.btn {
+  margin-top: 20px;
+}
 
 
+/*즐겨찾기btn*/
+.bookmk {
+  text-align: center;
+  width: 150px;
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 8px;
+  font-size: 1.2em;
+  padding: 0.5rem 0.5rem;
+  margin: 0.5rem 0.5rem;
+  display: inline-block;
+  transition: transform 300ms ease;
+
+}
+
+.bookmk:hover {
+  transform: scale(1.1);
+}
 
 
-</body>
-</html>
+.comment {
+  margin-top: 30px;
+  margin-bottom: 40px;
+
+}
+
+
+#user-card {
+  overflow: auto;
+
+
+}
+
+
