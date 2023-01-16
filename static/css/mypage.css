@@ -9,6 +9,9 @@ li {
   grid-template-columns: 1fr 1fr 1fr 1fr 100px;
   background-color: darkgrey;
 }
+nav > a {
+  text-decoration: none;
+}
 .mytitle {
   width: 100%;
   height: 300px;

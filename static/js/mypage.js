@@ -1,3 +1,33 @@
+$(document).ready(function () {
+  listening();
+});
+
+function listening() {
+  $("#repo_ul").empty();
+  $.ajax({
+    type: "GET",
+    url: "/Mypage/favorite",
+    data: {},
+    success: function (response) {
+      let rows = response["fav_list"];
+      for (let i = 0; i < rows.length; i++) {
+        console.log(rows[i]);
+        temp_html = `
+            <li class="result-repo-item">
+            <img
+              class="mypage-img"
+              src="https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU"
+            />
+            <span> ${rows[i]}</span>
+            <span><button class="btn-cancel btn-danger">cancel</button></span>
+          </li>`;
+
+        $("#repo_ul").append(temp_html);
+      }
+    },
+  });
+}
+
 function modify_me() {
   // 로그인 정보 id를 가져와야합니다.
   //let val = 로그인ID
@@ -38,12 +68,17 @@ function modify_me() {
     </div>
     <div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <button onclick="modify_cancel()" class="btn btn-danger">
-        cancel
-      </button>
+      
     </div>
   </form>
+  <button onclick="modify_cancel()" class="btn btn-danger">
+        cancel
+      </button>
 </div>`;
 
   $("#my-info").append(temp_html);
+}
+
+function modify_cancel() {
+  window.location.reload();
 }

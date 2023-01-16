@@ -26,19 +26,33 @@ app = Flask(__name__)
 def hello_world():  # put application's code here
     # name = list(db.gitDB.find({}, {}))
     # print(dumps(name))
-    db.gitDB.update_one({'id':'akfangus'},{'$push':{'fav_id':'user2'}})
+    # db.gitDB.update_one({'id':'akfangus'},{'$push':{'fav_id':'user2'}})
     return render_template('main.html')
 
 @app.route('/UserList')
 def userlist():
     return render_template('member.html')
 
+@app.route('/UserList/call', methods=['GET'])
+def users_list_call():
+    user_list = list(db.gitDB.find({}, {'_id': False}))
+    return jsonify({'user_call':user_list})
+
+@app.route('/UserList/throw', methods=['POST'])
+def user_faver_throw():
+    movie_receive = request.form['val_give']
+    # print(movie_receive)
+    target_id = 'akfangus'
+    db.gitDB.update_one({'id':target_id},{'$push':{'fav_id':movie_receive}})
+    return redirect('/UserList')
+
+
 
 @app.route('/Main', methods=['GET'])
 def search_member():  # put application's code here
     name = request.args.get("name")
     name_list = list(db.gitDB.find({'id': name}, {'_id': False}))
-    print(name_list)
+    # print(name_list)
 
     # 크롤링 영역
     #user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a
@@ -46,7 +60,7 @@ def search_member():  # put application's code here
     soup = BeautifulSoup(data.text, 'html.parser')
     info = soup.select("#user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a")
     repo_list = [item.text.strip() for item in info]
-    print(repo_list)
+    # print(repo_list)
     return jsonify({'id_list': name_list, 'repo_list': repo_list})
 
 
@@ -54,25 +68,23 @@ def search_member():  # put application's code here
 def mypage():
     return render_template('mypage.html')
 
+@app.route('/Mypage/favorite', methods=['GET'])
+def show_favor_list():
+    name_list = list(db.gitDB.find({'id': 'akfangus'}, {'_id': False}))
+    print(name_list[0]['fav_id'])
+    # print()
+
+    return jsonify({'fav_list': name_list[0]['fav_id']})
+
 
 @app.route('/Mypage/modify', methods=['POST'])
 def do_modify():
     ff = request.files['image1']
     f = request.form
-    print(secure_filename(ff.filename))
-    print(f)
+    # print(secure_filename(ff.filename))
+    # print(f)
     ff.save('./static/image/' + secure_filename(ff.filename))
     return redirect(f'/Mypage')
-
-@app.route('/UserList', methods=['GET'])
-def users_list():
-
-    return render_template("member.html")
-
-@app.route('/UserList/call', methods=['GET'])
-def users_list_call():
-    user_list = list(db.gitDB.find({}, {'_id': False}))
-    return jsonify({'user_call':user_list})
 
 
 if __name__ == '__main__':

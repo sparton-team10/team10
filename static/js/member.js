@@ -20,13 +20,13 @@ function listening() {
                                         <img src="${img}" class="profile"/>
                                     </div>
                                     <div class="user-info">
-                                        <h2>${id}<h2>
+                                        <h2 id="${id}">${id}<h2>
                                         <h2>${name}</h2>
                                         <div class="comment">
                                             ${comment}
                                         </div>
                                         <div class="btn">
-                                           <button type="button" class="bookmk" style=cursor:pointer;>⭐bookmark</button>
+                                           <button type="button" class="bookmk" onclick="throw_favor_id('${id}')" style=cursor:pointer;>⭐bookmark</button>
                                         </div>
                                     </div>
                                    </div> `;
@@ -34,5 +34,15 @@ function listening() {
         $("#user-card").append(temp_html);
       }
     },
+  });
+}
+
+function throw_favor_id(val) {
+  alert(val);
+  $.ajax({
+    type: "POST",
+    url: "/UserList/throw",
+    data: { val_give: val },
+    success: function (response) {},
   });
 }
