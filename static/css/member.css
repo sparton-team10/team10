@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+
+h1 {
+  color: #562B08;
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+
+body{
+  background-color: #EAC7C7;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+
+.card {
+  max-width: 500px;
+  background-color: #EAE0DA;
+  border-radius: 20px;
+  box-shadow: 5px 10px rgba(154, 160, 185, 0.05), 20px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+/*프로필 사진 부분*/
+.profile {
+  border-radius: 50%;
+  border: 5px solid #562B08;
+  height: 150px;
+  width: 150px;
+}
+
+/*유저 정보*/
+.user-info {
+  color: #eee;
+  margin-left: 4rem;
+  margin-right: 2rem;
+}
+
+
+.user-info h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.user-info ul {
+  list-style-type: none;
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+  padding: 0;
+  max-width: 400px;
+  color: #000000;
+}
+
+/*.user-info ul li {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*}*/
+
+.user-info ul li strong {
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+
+/*즐겨찾기btn*/
+.bookmk {
+  text-align: center;
+  width: 150px;
+  color: #ffffff;
+  background-color: #562B08;
+  border-radius: 8px;
+  font-size: 1.2em;
+  padding: 0.5rem 0.5rem;
+  margin: 0.5rem 0.5rem;
+  display: inline-block;
+  transition: transform 300ms ease;
+
+}
+
+.bookmk:hover {
+  transform: scale(1.1);
+}
+
+
+
