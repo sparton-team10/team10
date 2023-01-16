@@ -55,6 +55,16 @@ def do_modify():
     ff.save('./static/image/' + secure_filename(ff.filename))
     return redirect(f'/Mypage')
 
+@app.route('/UserList', methods=['GET'])
+def users_list():
+
+    return render_template("member.html")
+
+@app.route('/UserList/call', methods=['GET'])
+def users_list_call():
+    user_list = list(db.gitDB.find({}, {'_id': False}))
+    return jsonify({'user_call':user_list})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
