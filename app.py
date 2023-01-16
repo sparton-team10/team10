@@ -104,6 +104,29 @@ def search_member():  # put application's code here
     return jsonify({'id_list': name_list, 'repo_list': repo_list})
 
 
+@app.route('/signup', methods=['POST'])
+def sign_up():
+
+    # id_give가 문제라면서 자꾸 오류가 뜨네요. 문제원인을 모르겠어요
+    id_receive = request.form['id_give']
+    name_receive = request.form['name_give']
+    pwd_receive = request.form['pwd_give']
+    comment_receive = request.form['comment_give']
+    img_receive = request.form['img_give']
+
+    pwd_hash = hashlib.sha256(pwd_receive.encode('utf-8')).hexdigest()
+
+    account = {
+        'id': id_receive,
+        'name': name_receive,
+        'passwd': pwd_receive,
+        'comment': comment_receive,
+        'img': img_receive
+    }
+    db.gitDB.insert_one(account)
+    return jsonify({'result': 'success'})
+
+
 @app.route('/Mypage')
 def mypage():
     return render_template('mypage.html')
