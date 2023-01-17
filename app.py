@@ -56,7 +56,7 @@ def login():
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('signup.html')
 
 # [로그인 API]
 # id, pw를 받아서 맞춰보고, 토큰을 만들어 발급합니다.
@@ -69,7 +69,7 @@ def api_login():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
-    result = db.toch.find_one({'id': id_receive, 'pw': pw_hash})
+    result = db.gitDB.find_one({'id': id_receive, 'pw': pw_hash})
 
     # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
@@ -110,11 +110,11 @@ def search_member():  # put application's code here
 def sign_up():
 
     # id_give가 문제라면서 자꾸 오류가 뜨네요. 문제원인을 모르겠어요
-    id_receive = request.form['id_give']
+    id_receive = request.form['account_give']
     name_receive = request.form['name_give']
     pwd_receive = request.form['pwd_give']
     comment_receive = request.form['comment_give']
-    img_receive = request.form['img_give']
+    img_receive = request.form['image_give']
 
     pwd_hash = hashlib.sha256(pwd_receive.encode('utf-8')).hexdigest()
 
@@ -126,7 +126,7 @@ def sign_up():
         'img': img_receive
     }
     db.gitDB.insert_one(account)
-    return jsonify({'result': 'success'})
+    return jsonify({'msg': '회원 가입에 성공했습니다'})
 
 
 @app.route('/Mypage')
