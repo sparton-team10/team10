@@ -53,11 +53,11 @@
             type: 'POST',
             url: '/signup',
             data: {
-                account_give: signup_id,
+                id_give: signup_id,
                 name_give: signup_name,
                 pwd_give: signup_pwd,
                 comment_give: gitcomment,
-                image_give: gitimage
+                img_give: gitimage
             },
 
             success: function (response) {
