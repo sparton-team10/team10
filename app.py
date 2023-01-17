@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 
 from werkzeug.utils import secure_filename
 
-client = MongoClient('mongodb+srv://lee:sparta@Cluster0.nw7w0pd.mongodb.net/?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.irjpymr.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
 headers = {
@@ -33,17 +33,19 @@ SECRET_KEY = 'SPARTA'
 def hello_world():  # put application's code here
     return render_template('main.html')
 
-@app.route('/check')
-def check():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.toch.find_one({"id": payload['id']})
-        return render_template('logout.html', nickname=user_info["nick"])
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("login", msg="로그인 정보가 존재하지 않음."))
+
+# 로그아웃 API 부분으로 토큰 시간에 따라 로그아웃을 선택적으로 할 수 있다.
+# @app.route('/check')
+# def check():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         user_info = db.toch.find_one({"id": payload['id']})
+#         return render_template('logout.html', nickname=user_info["nick"])
+#     except jwt.ExpiredSignatureError:
+#         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+#     except jwt.exceptions.DecodeError:
+#         return redirect(url_for("login", msg="로그인 정보가 존재하지 않음."))
 
 
 @app.route('/login')
