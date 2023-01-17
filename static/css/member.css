@@ -6,7 +6,7 @@
 
 
 h1 {
-  color: #562B08;
+  color: #000000;
   font-size: 50px;
   margin-bottom: 50px;
   margin-top: 50px;
@@ -14,7 +14,7 @@ h1 {
 
 
 body{
-  background-color: #EAC7C7;
+  /*background-color: #EAC7C7;*/
   color: #fff;
   font-family: 'Poppins', sans-serif;
   display: flex;
@@ -24,12 +24,15 @@ body{
   height: 100vh;
   overflow: hidden;
   margin: 0;
+  overflow: auto;
+
+
 }
 
 
 .card {
   max-width: 500px;
-  background-color: #EAE0DA;
+  background-color: #3CC;
   border-radius: 20px;
   box-shadow: 5px 10px rgba(154, 160, 185, 0.05), 20px 30px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -40,38 +43,26 @@ body{
 /*프로필 사진 부분*/
 .profile {
   border-radius: 50%;
-  border: 5px solid #562B08;
-  height: 150px;
-  width: 150px;
+  border: 5px solid #000000;
+  height: 180px;
+  width: 180px;
+
 }
 
 /*유저 정보*/
 .user-info {
-  color: #eee;
+  color: #000000;
+  margin-top: 30px;
   margin-left: 4rem;
   margin-right: 2rem;
 }
 
 
 .user-info h2 {
-  margin-top: 0;
+  margin-top: -12px;
   margin-bottom: 5px;
-  color: #000000;
-}
 
-.user-info ul {
-  list-style-type: none;
-  /*display: flex;*/
-  /*justify-content: space-between;*/
-  padding: 0;
-  max-width: 400px;
-  color: #000000;
 }
-
-/*.user-info ul li {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
 
 .user-info ul li strong {
   font-size: 1rem;
@@ -88,7 +79,7 @@ body{
   text-align: center;
   width: 150px;
   color: #ffffff;
-  background-color: #562B08;
+  background-color: #000000;
   border-radius: 8px;
   font-size: 1.2em;
   padding: 0.5rem 0.5rem;
@@ -103,4 +94,15 @@ body{
 }
 
 
+.comment {
+  margin-top: 10px;
+  margin-bottom: 40px;
 
+}
+
+
+/*. {*/
+/*  overflow: auto;*/
+
+
+/*}*/
