@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--    ajax-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+        <!--    회원가입박스 부트스트랩-->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+    <title>Title</title>
+
+    <!--    static에 있는 css 파일과 js 파일 불러오기-->
+    <link rel="stylesheet" type="text/css" href="../static/css/signup.css">
+    <script type="text/javascript" src="./static/js/signup.js" defer></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="col-md-6">
+        <div id="logbox">
+
+            <form id="signup" method="post" action="/signup">
+
+                <h3>SPARTRANGIT</h3>
+                <h5>LINK YOUR GIT WORLD</h5>
+
+                <input id="id" name="user[id]" type="text" placeholder="ID" pattern="^[\w]{3,16}$"
+                       required="required" class="input pass"/>
+                <input id="name" name="user[name]" type="text" placeholder="이름" pattern="^[\w]{3,16}$"
+                       required="required" class="input pass"/>
+                <input id="passwd" name="user[password]" type="password" placeholder="비밀번호"
+                       required="required" class="input pass"/>
+                <input id="passwd2" name="user[password2]" type="password" placeholder="비밀번호 확인"
+                       required="required" class="input pass"/>
+                <input id="gitcomment" name="user[comment]" type="text"
+                       placeholder="내 프로필에 남길 한마디" class="input pass"/>
+                <input id="signupBtn" type="button" onclick="signup()" value="등록하고 시작!"
+                       class="inputButton"/>
+                <input id="image" type="hidden" name="userimg" value="kakao_default"
+                       class="profileimage"/>
+
+                <div class="text-center">
+                    이미 계정이 있으신가요? <a href="#" id="login_id">로그인 하기</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
