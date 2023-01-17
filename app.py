@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
-
+# mongoDB 쓰려면 필요합니다.
 from pymongo import MongoClient
 
 # JWT 패키지를 사용합니다. (설치해야할 패키지 이름: PyJWT)
@@ -8,21 +8,22 @@ import jwt
 # 토큰에 만료시간을 줘야하기 때문에, datetime 모듈도 사용합니다.
 import datetime
 
+# 회원가입 시 비밀번호를 해싱(암호화) 할때 사용합니다.
 import hashlib
 
 app = Flask(__name__)
 
 import requests
+
 from bs4 import BeautifulSoup
 
 from werkzeug.utils import secure_filename
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.irjpymr.mongodb.net/Cluster0?retryWrites=true&w=majority')
+client = MongoClient('mongodb+srv://test:sparta@cluster0.9cokow4.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
 headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 
 # JWT 토큰을 만들 때 필요한 비밀문자열
 # 이 문자열은 서버만 알고있기 때문에, 내 서버에서만 토큰을 인코딩(=만들기)/디코딩(=풀기) 할 수 있습니다.
@@ -54,7 +55,7 @@ def login():
     return render_template('login.html', msg=msg)
 
 
-@app.route('/register')
+@app.route('/signup')
 def register():
     return render_template('signup.html')
 
@@ -97,20 +98,21 @@ def search_member():  # put application's code here
     print(name_list)
 
     # 크롤링 영역
-    #user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a
+    # user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a
     data = requests.get(f"https://github.com/{name}?tab=repositories", headers=headers)
     soup = BeautifulSoup(data.text, 'html.parser')
-    info = soup.select("#user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a")
+    info = soup.select(
+        "#user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a")
     repo_list = [item.text.strip() for item in info]
     print(repo_list)
     return jsonify({'id_list': name_list, 'repo_list': repo_list})
 
 
 @app.route('/signup', methods=['POST'])
-def sign_up():
-
-    # id_give가 문제라면서 자꾸 오류가 뜨네요. 문제원인을 모르겠어요
-    id_receive = request.form['account_give']
+def sign_up_act():
+    # JS의 오류가 id_receive 문제로 뜰 수있습니다. 하지만 app.py가 아니라
+    # 대부분 프론트 문제니 참고하셔요! JS 함수에서 변수이름 같은게 문제일경우 많습니다
+    id_receive = request.form['id_give']
     name_receive = request.form['name_give']
     pwd_receive = request.form['pwd_give']
     comment_receive = request.form['comment_give']
@@ -121,7 +123,7 @@ def sign_up():
     account = {
         'id': id_receive,
         'name': name_receive,
-        'passwd': pwd_receive,
+        'passwd': pwd_hash,
         'comment': comment_receive,
         'img': img_receive
     }
@@ -146,13 +148,13 @@ def do_modify():
 
 @app.route('/UserList', methods=['GET'])
 def users_list():
-
     return render_template("member.html")
+
 
 @app.route('/UserList/call', methods=['GET'])
 def users_list_call():
     user_list = list(db.gitDB.find({}, {'_id': False}))
-    return jsonify({'user_call':user_list})
+    return jsonify({'user_call': user_list})
 
 
 if __name__ == '__main__':
