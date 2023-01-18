@@ -19,7 +19,11 @@ from bs4 import BeautifulSoup
 
 from werkzeug.utils import secure_filename
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.9cokow4.mongodb.net/Cluster0?retryWrites=true&w=majority')
+import certifi
+
+ca = certifi.where()
+
+client = MongoClient('mongodb+srv://lee:sparta@Cluster0.nw7w0pd.mongodb.net/?retryWrites=true&w=majority')
 db = client.dbsparta
 
 headers = {
@@ -96,8 +100,9 @@ def api_login():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route('/', methods=['GET'])
+@app.route('/find', methods=['GET'])
 def search_member():  # put application's code here
+    print('여기옴')
     name = request.args.get("name")
     name_list = list(db.gitDB.find({'id': name}, {'_id': False}))
     print(name_list)
@@ -124,7 +129,7 @@ def sign_up_act():
     img_receive = request.form['img_give']
 
     pwd_hash = hashlib.sha256(pwd_receive.encode('utf-8')).hexdigest()
-
+    print(pwd_hash)
     account = {
         'id': id_receive,
         'name': name_receive,
@@ -158,6 +163,7 @@ def users_list():
 
 @app.route('/UserList/call', methods=['GET'])
 def users_list_call():
+    print('여기도옴')
     user_list = list(db.gitDB.find({}, {'_id': False}))
     return jsonify({'user_call': user_list})
 

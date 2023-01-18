@@ -11,7 +11,7 @@ function search_member() {
   let val = $("#title").val();
   $.ajax({
     type: "GET",
-    url: "/?name=" + val,
+    url: "/find?name=" + val,
     data: {},
     success: function (response) {
       //왼쪽 내정보 데이터베이스 가져옴
@@ -45,4 +45,3 @@ function search_member() {
     },
   });
 }
-
