@@ -2,15 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>member_List</title>
+    <title>SPARTRANGIT!</title>
+
+    <!--    구글폰트-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Sharp|Material+Icons+Two+Tone|Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=IBM+Plex+Sans+KR&family=Sofia+Sans+Semi+Condensed&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=IBM+Plex+Sans+KR&family=Jua&family=Sofia+Sans+Semi+Condensed&display=swap"
+          rel="stylesheet">
+
+    <!--    static에서 css, js 파일 불러오기-->
     <link rel="stylesheet" type="text/css" href="/static/css/member.css"/>
+
+    <!--    jquery import - 이거 없으면 js파일 안먹혀용-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!--    타이틀부분 날씨표시용 js파일 입니다-->
+    <script type="text/javascript" src="./static/js/temperature.js"></script>
+    <!--    메뉴바 좌측의 깃헙 로고용 import-->
+    <script src="https://kit.fontawesome.com/06263c1511.js" crossorigin="anonymous"></script>
+    <!--    메뉴바 디자인용 css - 이거 빼시면 메뉴바 안나와용-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menubar.css') }}"/>
+    <!-- 이 div가 네비게이션바 전체입니다. head쪽에 넣어주셔야 body쪽에 지장이 없을거에요 (리하)-->
+    <div style="width: 100%">
+      <nav class="navbar">
+        <div class="nav_logo">
+          <i class="fa-brands fa-github"></i>
+          <a href="/">SPARTRANGIT!</a>
+        </div>
+
+        <ul class="mynav">
+          <li><a href="/">Main</a></li>
+          <li><a href="/about_this">About this</a></li>
+          <li><a href="/UserList">UserList</a></li>
+          <li><a href="/Mypage">Mypage</a></li>
+          <!--          <li><a href="/login">Login</a></li>-->
+        </ul>
+        <!--        <i class="fa-brands fa-github"></i>-->
+        <a href="/login">LOGIN</a>
+        <a href="#" onclick="logout()">LOGOUT</a>
+      </nav>
+    </div>
+
+    <script>
+        // {% if msg %}
+        // alert("{{ msg }}")
+        // {% endif %}
+        function InsertForm() {
+            location.href = "/register"
+        }
+
+        function login() {
+            let id = $('#userId').val()
+            let pwd = $('#userPw').val()
+
+            if ((id == '' || id == 'undefined') && (pwd == '' || pwd == 'undefined')) {
+                alert("입력이 필요합니다")
+                return;
+            } else if (id == '' || id == 'undefined') {
+                alert("ID를 입력하세요")
+                return;
+            } else if (pwd == '' || pwd == 'undefined') {
+                alert("Password를 입력하세요")
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/login",
+                data: {id_give: id, pw_give: pwd},
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
+                        // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
+                        $.cookie('mytoken', response['token']);
+
+                        alert('로그인 완료!')
+                        window.location.href = '/Main'
+                    } else {
+                        // 로그인이 안되면 에러메시지를 띄웁니다.
+                        alert(response['msg'])
+                    }
+                }
+            })
+        }
+
+    </script>
 </head>
 <body>
 
-
-
 <div class="mytitle">
-    <h1>Member List</h1>
+    <h1>SPAR - TRAN - GIT</h1>
+    <h5>당신만의 GitHub Transit map from SPARTON</h5>
+    <h8> Now temperaute of <span id="region"></span> : <span id="temp">0.0</span>℃</h8>
+</div>
+
+<div class="membertitle">
+    <h1 style="color: black">Member List</h1>
 </div>
 
 
@@ -28,7 +117,6 @@
             <div class="comment">
                 코멘트들어감
             </div>
-
 
             <div class="btn">
                 <button type="button" class="bookmk" style=cursor:pointer;>⭐bookmark</button>

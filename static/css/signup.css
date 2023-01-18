@@ -10,11 +10,6 @@
          font-family: 'Sofia Sans Semi Condensed', sans-serif;
      }
 
-
-  body {
-    background: #3CC;
-  }
-
   .container {
     display: -webkit-flex;
     display: flex;
@@ -100,3 +95,61 @@
   .inputButton:focus {
     outline: none;
   }
+
+    /*이 아래로 리하가 수정한 네비게이션바(메뉴바) 디자인 코드*/
+
+  .mynav {
+    list-style: none;
+    display: grid;
+    place-items: center;
+    height: 70px;
+
+    align-items: center;
+    padding: 8px 12px;
+    --text-color: white;
+    margin: 3px 0;
+    font-size: 18px;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr 200px;
+  }
+
+  .nav_logo {
+    font-size: 40px;
+    color: white;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2CADAD;
+    padding: 8px 12px;
+    --text-color: white;
+    margin: 3px 0;
+    font-size: 18px;
+  }
+
+  /*메뉴바의 i태그(아이콘. 여기는 깃헙 아이콘만 있음) 디자인*/
+  .navbar i {
+    font-size: 40px;
+    color: white;
+  }
+
+  /*메뉴바의 앵커태그 걸린 애들 디자인*/
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    border: 3px;
+  }
+
+  /*네비게이션바의 메뉴버튼들*/
+  .mynav li {
+    padding: 10px 30px;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  /*네비게이션바의 메뉴버튼 호버시 색변환*/
+  .mynav li:hover {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+  }
+

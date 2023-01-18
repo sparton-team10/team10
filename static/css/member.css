@@ -1,27 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 
-* {
-    box-sizing: border-box;
-}
+  .mytitle {
+    width: 100%;
+    height: 250px;
+    background-position: center;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url("https://images.unsplash.com/photo-1590595906931-81f04f0ccebb?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=4800");
+    background-size: cover;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-
-.mytitle {
+.membertitle {
     width: 100%;
     height: 200px;
     color: black;
-
     /*background-color: #757575;*/
-
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-bottom: 40px;
-
-
-
-
 }
 
 h1 {
@@ -30,10 +37,9 @@ h1 {
     /*margin-bottom: 50px;*/
     /*margin-top: 50px;*/
 }
-
-
 body {
     /*background-color: #EAC7C7;*/
+    box-sizing: border-box;
     color: #fff;
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -43,10 +49,7 @@ body {
     overflow: hidden;
     margin: 0;
     overflow: auto;
-
-
 }
-
 
 .card {
     max-width: 500px;
@@ -57,16 +60,13 @@ body {
     padding: 3rem;
     margin-bottom: 3rem;
 }
-
 /*프로필 사진 부분*/
 .profile {
     border-radius: 50%;
     border: 5px solid #000000;
     height: 180px;
     width: 180px;
-
 }
-
 /*유저 정보*/
 .user-info {
     color: #000000;
@@ -75,11 +75,9 @@ body {
     margin-right: 2rem;
 }
 
-
 .user-info h2 {
     margin-top: -12px;
     margin-bottom: 5px;
-
 }
 
 .user-info ul li strong {
@@ -90,7 +88,6 @@ body {
 .btn {
     margin-top: 20px;
 }
-
 
 /*즐겨찾기btn*/
 .bookmk {
@@ -104,13 +101,11 @@ body {
     margin: 0.5rem 0.5rem;
     display: inline-block;
     transition: transform 300ms ease;
-
 }
 
 .bookmk:hover {
     transform: scale(1.1);
 }
-
 
 .comment {
     margin-top: 10px;

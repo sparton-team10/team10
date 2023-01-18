@@ -35,6 +35,11 @@ def hello_world():  # put application's code here
     return render_template('main.html')
 
 
+@app.route('/about_this')
+def about_this():  # put application's code here
+    return render_template('about_this.html')
+
+
 # 로그아웃 API 부분으로 토큰 시간에 따라 로그아웃을 선택적으로 할 수 있다.
 # @app.route('/check')
 # def check():
@@ -51,8 +56,8 @@ def hello_world():  # put application's code here
 
 @app.route('/login')
 def login():
-    msg = request.args.get("msg")
-    return render_template('login.html', msg=msg)
+    # msg = request.args.get("msg")
+    return render_template('login.html')
 
 
 @app.route('/signup')
@@ -70,7 +75,7 @@ def api_login():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
-    result = db.gitDB.find_one({'id': id_receive, 'pw': pw_hash})
+    result = db.gitDB.find_one({'id': id_receive, 'passwd': pw_hash})
 
     # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
@@ -91,7 +96,7 @@ def api_login():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-@app.route('/Main', methods=['GET'])
+@app.route('/', methods=['GET'])
 def search_member():  # put application's code here
     name = request.args.get("name")
     name_list = list(db.gitDB.find({'id': name}, {'_id': False}))
@@ -116,7 +121,7 @@ def sign_up_act():
     name_receive = request.form['name_give']
     pwd_receive = request.form['pwd_give']
     comment_receive = request.form['comment_give']
-    img_receive = request.form['image_give']
+    img_receive = request.form['img_give']
 
     pwd_hash = hashlib.sha256(pwd_receive.encode('utf-8')).hexdigest()
 
@@ -155,6 +160,13 @@ def users_list():
 def users_list_call():
     user_list = list(db.gitDB.find({}, {'_id': False}))
     return jsonify({'user_call': user_list})
+
+
+#로그아웃 페이지가 따로 쓰이지 않아서 주석처리 했어요
+# @app.route('/logout', methods=['GET'])
+# def logout():
+#     user_list = list(db.gitDB.find({}, {'_id': False}))
+#     return render_template('logout.html')
 
 
 if __name__ == '__main__':
