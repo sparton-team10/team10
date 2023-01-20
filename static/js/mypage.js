@@ -1,3 +1,9 @@
+$(document).ready(function () {
+  open_profile();
+});
+
+function open_profile() {}
+
 function modify_me() {
   // 로그인 정보 id를 가져와야 합니다.
   //let val = 로그인ID
