@@ -1,83 +1,83 @@
 :root {
-      --text-color: #000000;
-      --backround-color: cadetblue;
-      --accent-color: navajowhite;
-  }
+  --text-color: #000000;
+  --backround-color: cadetblue;
+  --accent-color: navajowhite;
+}
 
-  head {
-    font-family: 'Sofia Sans Semi Condensed', sans-serif;
-  }
+head {
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+}
 
-  body {
-    font-family: 'Jua', sans-serif;
-  }
+body {
+  font-family: "Jua", sans-serif;
+}
 
-  .mynav {
-    list-style: none;
-    display: grid;
-    place-items: center;
-    height: 50px;
+.mynav {
+  list-style: none;
+  display: grid;
+  place-items: center;
+  height: 50px;
 
-    grid-template-columns: 1fr 1fr 1fr 1fr 200px;
-  }
+  grid-template-columns: 1fr 1fr 1fr 1fr 200px;
+}
 
-  /*이 아래로 리하가 수정한 네비게이션바(메뉴바) 디자인 코드*/
+/*이 아래로 리하가 수정한 네비게이션바(메뉴바) 디자인 코드*/
 
-  /*SPARTRANSIT!에 대한 속성*/
-  .nav_logo {
-    font-size: 22px;
-    color: white;
-    text-align: center;
+/*SPARTRANSIT!에 대한 속성*/
+.nav_logo {
+  font-size: 22px;
+  color: white;
+  text-align: center;
 
-    display: flex;
-    align-items: center;
-    /*align-items는 x축 기준, justify는 y축 기준 정렬*/
-  }
+  display: flex;
+  align-items: center;
+  /*align-items는 x축 기준, justify는 y축 기준 정렬*/
+}
 
-  .nav_logo a {
-    padding-left: 5px;
-  }
+.nav_logo a {
+  padding-left: 5px;
+}
 
-  /*메뉴바 전체(깃헙 로고부터 로그인버튼까지)의 속성*/
-  .navbar {
-    font-family: 'Sofia Sans Semi Condensed', sans-serif;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2CADAD;
-    padding: 8px 12px;
-    color: white;
-    margin: 3px 0;
-    font-size: 18px;
-  }
+/*메뉴바 전체(깃헙 로고부터 로그인버튼까지)의 속성*/
+.navbar {
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2cadad;
+  padding: 8px 12px;
+  color: white;
+  margin: 3px 0;
+  font-size: 18px;
+}
 
-  /*메뉴버튼들 묶음에 대한 속성*/
-  .mynav {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-  }
+/*메뉴버튼들 묶음에 대한 속성*/
+.mynav {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
 
-  /*메뉴바의 i태그(아이콘. 여기는 깃헙 아이콘만 있음) 디자인*/
-  .navbar i {
-    font-size: 35px;
-    color: white;
-  }
+/*메뉴바의 i태그(아이콘. 여기는 깃헙 아이콘만 있음) 디자인*/
+.navbar i {
+  font-size: 35px;
+  color: white;
+}
 
-  /*메뉴바의 앵커태그 걸린 애들 디자인*/
-  a {
-    text-decoration: none;
-    color: white;
-    border: 3px;
-  }
+/*메뉴바의 앵커태그 걸린 애들 디자인*/
+a {
+  text-decoration: none;
+  /* color: white; */
+  border: 3px;
+}
 
-    /*네비게이션바의 메뉴버튼들*/
-  .mynav li {
-    padding: 10px 30px;
-  }
+/*네비게이션바의 메뉴버튼들*/
+.mynav li {
+  padding: 10px 30px;
+}
 
-  /*네비게이션바의 메뉴버튼 호버시 색변환*/
-  .mynav li:hover {
-    background-color: var(--accent-color);
-    border-radius: 10px;
-  }
+/*네비게이션바의 메뉴버튼 호버시 색변환*/
+.mynav li:hover {
+  background-color: var(--accent-color);
+  border-radius: 10px;
+}

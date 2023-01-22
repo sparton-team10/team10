@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 // 메인페이지에서 유저검색하는부분
 function search_member() {
+  $("#repo_ul").empty();
   let val = $("#title").val();
   $.ajax({
     type: "GET",
@@ -35,10 +36,20 @@ function search_member() {
       // 데이터 베이스 id 값으로 repo리스트 크롤링해서 출력
       $("#repo_ul").empty();
       let repo_list = response["repo_list"];
+      let repo_open = response["repo_open"];
       for (let i = 0; i < repo_list.length; i++) {
         let repo_name = repo_list[i];
+        let open_name = repo_open[i];
 
-        temp_html2 = `<li class="result-repo-item">${repo_name}</li>`;
+        // temp_html2 = `<li class="result-repo-item"><a href="https://github.com/${id_list[0]["id"]}/${repo_name}">${repo_name}</a></li>`;
+        temp_html2 = `
+        <li class="result-repo-item">
+        <a href="https://github.com/${id_list[0]["id"]}/${repo_name}">
+        ${repo_name}
+        </a>
+        <span style="float: right;" class="badge bg-secondary">${open_name}</span>
+        </li>
+        `;
 
         $("#repo_ul").append(temp_html2);
       }

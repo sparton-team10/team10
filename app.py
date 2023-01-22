@@ -115,7 +115,13 @@ def search_member():  # put application's code here
         "#user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > a")
     repo_list = [item.text.strip() for item in info]
     print(repo_list)
-    return jsonify({'id_list': name_list, 'repo_list': repo_list})
+
+    # 추가 크롤링?
+    info2 = soup.select("#user-repositories-list > ul > li > div.col-10.col-lg-9.d-inline-block > div.d-inline-block.mb-1 > h3 > span.Label.Label--secondary.v-align-middle.ml-1.mb-1")
+    repo_open = [item.text.strip() for item in info2]
+    print(repo_open)
+
+    return jsonify({'id_list': name_list, 'repo_list': repo_list, 'repo_open': repo_open})
 
 
 @app.route('/signup', methods=['POST'])
