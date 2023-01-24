@@ -1,9 +1,43 @@
+//global 변수 mytoken? 값 저장해놓기?
+//아니면 이벤트시마다  token값불르는 함수 불러와서 전달?
+var mytoken = "";
+
 $(document).ready(function () {
   $("#title").on("keyup", function (key) {
     if (key.keyCode == 13) {
       search_member();
     }
   });
+
+  var cookieData = document.cookie;
+
+  function getCookie() {
+    return new Promise((resolve, reject) => {
+      try {
+        console.log("cookie 가져오는중");
+        resolve(cookieData.split(" ")[1].split("=")[1]);
+      } catch {
+        // console.log("실패 reject실행");
+        reject("failed");
+      }
+    });
+  }
+  getCookie()
+    .then(function (data) {
+      mytoken = data;
+      $("#login").hide();
+      $("#logout").show();
+      $("#mypage").show();
+
+      console.log(mytoken); // response 값 출력
+    })
+    .catch(function (err) {
+      $("#login").show();
+      $("#logout").hide();
+      $("#mypage").hide();
+
+      console.error(err); // Error 출력
+    });
 });
 
 // 메인페이지에서 유저검색하는부분

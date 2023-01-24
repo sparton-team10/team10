@@ -100,3 +100,7 @@
   height: 10rem;
   border-radius: 50%;
 }
+
+.logout {
+  /* visibility: hidden; */
+}

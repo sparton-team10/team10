@@ -1,5 +1,37 @@
+var mytoken = "";
 $(document).ready(function () {
+  // 나중에 이 두개 합쳐야함 프로필칸, 즐겨찾기칸 따로 구성해서 나중에 합칠예정.
+  // modify_me();
   open_profile();
+
+  function getCookie() {
+    return new Promise((resolve, reject) => {
+      try {
+        console.log("cookie 가져오는중");
+        resolve(cookieData.split(" ")[1].split("=")[1]);
+      } catch {
+        // console.log("실패 reject실행");
+        reject("failed");
+      }
+    });
+  }
+
+  getCookie()
+    .then(function (data) {
+      mytoken = data;
+      $("#login").hide();
+      $("#logout").show();
+      $("#mypage").show();
+
+      console.log(mytoken); // response 값 출력
+    })
+    .catch(function (err) {
+      $("#login").show();
+      $("#logout").hide();
+      $("#mypage").hide();
+
+      console.error(err); // Error 출력
+    });
 });
 
 function open_profile() {}
@@ -8,6 +40,7 @@ function modify_me() {
   // 로그인 정보 id를 가져와야 합니다.
   //let val = 로그인ID
   let val = "akfangus";
+  let val2 = mytoken;
   $("#my-info").empty();
   temp_html = `<div class="card card-id" style="width: 18rem">
   <form
